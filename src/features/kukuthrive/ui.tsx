@@ -302,6 +302,7 @@ export function PreviewFormDialog({
   behavior,
   fields,
   submitLabel = "Continue",
+  onSave,
 }: {
   trigger: ReactNode;
   title: string;
@@ -310,12 +311,16 @@ export function PreviewFormDialog({
   behavior: string;
   fields: PreviewField[];
   submitLabel?: string;
+  onSave?: (fields: Record<string,string>) => Promise<void>;
 }) {
   const [open, setOpen] = useState(false);
-  const submit = (event: FormEvent<HTMLFormElement>) => {
+  const [error,setError]=useState("");
+  const [saving,setSaving]=useState(false);
+  const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    showServerStub(feature, behavior);
-    setOpen(false);
+    if(!onSave) {showServerStub(feature,behavior);return;}
+    const values=Object.fromEntries(new FormData(event.currentTarget).entries());
+    setSaving(true);setError("");try{await onSave(Object.fromEntries(Object.entries(values).map(([k,v])=>[k,String(v)])));setOpen(false);}catch(e){setError(e instanceof Error?e.message:"Could not save.");}finally{setSaving(false);}
   };
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -377,9 +382,10 @@ export function PreviewFormDialog({
           ))}
           <div className="flex items-center justify-between gap-3 sm:col-span-2">
             <p className="text-xs leading-5 text-muted-foreground">
-              Preview only. Your entries will not be stored.
+              {onSave ? "" : "Preview only. Your entries will not be stored."}
             </p>
-            <Button type="submit">
+            {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
+            <Button type="submit" disabled={saving}>
               {submitLabel}
               <ArrowRight className="size-4" />
             </Button>

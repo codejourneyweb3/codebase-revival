@@ -22,6 +22,7 @@ import { Button } from "@/components/ui/button";
 import { WELFARE_DIMENSIONS } from "@/features/kukuthrive/content";
 import { EvidenceBadge, Metric, Panel, PreviewBadge, type Evidence } from "@/features/kukuthrive/ui";
 
+import photo from "@/assets/kuku-poultry.asset.json";
 const dimensionIcons = [Scale, Droplets, Feather, HeartPulse, Home];
 
 export function Dashboard() {
@@ -76,75 +77,14 @@ export function Dashboard() {
 
   return (
     <div className="space-y-7">
-      <section className="kukuthrive-hero relative overflow-hidden rounded-lg border border-sidebar-border bg-sidebar px-6 py-7 text-sidebar-foreground sm:px-8 sm:py-9">
-        <div className="relative z-10 grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:items-end">
-          <div>
-            <div className="mb-4 flex flex-wrap items-center gap-2">
-              <span className="rounded-full border border-sidebar-foreground/20 px-3 py-1 text-xs font-semibold text-sidebar-foreground/80">
-                {date}
-              </span>
-              <span className="rounded-full bg-sidebar-primary px-3 py-1 text-xs font-bold text-sidebar-primary-foreground">
-                Broiler intelligence
-              </span>
-            </div>
-            <h1 className="max-w-2xl font-display text-3xl font-semibold leading-tight sm:text-4xl">
-              {greeting}, {user?.name?.split(" ")[0] ?? "farmer"}.<br />
-              <span className="text-sidebar-primary">Let’s check the birds first.</span>
-            </h1>
-            <p className="mt-4 max-w-xl text-sm leading-6 text-sidebar-foreground/75">
-              Record what you can see, feel and count. KukuThrive keeps the evidence clear and never
-              turns missing information into a clean bill of health.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Button
-                asChild
-                size="lg"
-                className="bg-sidebar-primary text-sidebar-primary-foreground hover:bg-sidebar-primary/90"
-              >
-                <Link to="/daily">
-                  <ClipboardCheck />
-                  Start today’s checks
-                  <ArrowRight />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="border-sidebar-foreground/25 bg-transparent text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-foreground"
-              >
-                <Link to="/guides">
-                  <BookOpen />
-                  Open field guides
-                </Link>
-              </Button>
-            </div>
-          </div>
-          <div className="rounded-lg border border-sidebar-foreground/15 bg-sidebar-accent/65 p-5 backdrop-blur-sm">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold uppercase tracking-[0.12em] text-sidebar-foreground/65">
-                Today’s activity
-              </span>
-              <CheckCircle2 className="size-5 text-sidebar-primary" />
-            </div>
-            <div className="mt-3 flex items-end gap-2">
-              <span className="num font-display text-4xl font-semibold">{reportsToday.length}</span>
-              <span className="pb-1 text-sm text-sidebar-foreground/65">daily reports started</span>
-            </div>
-            <div className="mt-4 h-2 overflow-hidden rounded-full bg-sidebar-foreground/10">
-              <div
-                className="h-full rounded-full bg-sidebar-primary transition-all"
-                style={{ width: `${Math.min(100, reportsToday.length * 25)}%` }}
-              />
-            </div>
-            <p className="mt-3 text-xs leading-5 text-sidebar-foreground/65">
-              Mortality, feed, water and one observation form the minimum useful daily record.
-            </p>
-          </div>
-        </div>
+      <section className="farm-banner" style={{backgroundImage:`url(${photo.url})`}}>
+        <p className="mb-2 text-sm">{date} · {user?.name}</p>
+        <h1>KukuThrive</h1>
+        <p className="mt-2 text-sm">{greeting}. Let’s check the birds first.</p>
+        <div className="mt-5 flex flex-wrap gap-3"><Button asChild><Link to="/daily"><ClipboardCheck/>Start today’s checks<ArrowRight/></Link></Button><Button asChild variant="secondary"><Link to="/flocks"><Bird/>Your flocks</Link></Button></div>
       </section>
 
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 xl:grid-cols-4">
         <Metric
           label="Active flocks"
           value={active.length}

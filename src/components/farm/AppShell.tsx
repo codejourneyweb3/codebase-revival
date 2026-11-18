@@ -45,6 +45,9 @@ import { useAuth, useUi } from "@/lib/store";
 import { useData, useOnline } from "@/lib/hooks";
 
 import { syncNow } from "@/lib/sync";
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+import { useSyncStatus } from "@/sync/SyncStatusStore";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 
 const groups: { label: string; items: NavItem[] }[] = [
@@ -121,7 +124,7 @@ function NavList({ collapsed, onNav }: { collapsed?: boolean; onNav?: () => void
             </div>
           )}
           {g.items.map((i) => {
-            const active = i.to === "/" ? pathname === "/" : pathname.startsWith(i.to);
+            const active = i.to === "/" ? (pathname === "/" || pathname === "/dashboard") : pathname.startsWith(i.to);
             return (
               <Link
                 key={i.to}
@@ -173,6 +176,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   const nav = useNavigate();
   const { pathname } = useLocation();
   const pending = useData((db) => db.outbox.count()) ?? 0;
+  const syncError = useSyncStatus(s => s.error);
   const unread = useData((db) => db.alerts.filter((a) => !a.read && !a.resolved).count()) ?? 0;
 
 
@@ -183,9 +187,9 @@ export function AppShell({ children }: { children: ReactNode }) {
     if (online && pending) void syncNow().catch(() => {});
   }, [online, pending]);
 
-  if (!user) return null;
+  if (!user) return <div className="p-8 text-center">Your account is waiting for farm access.</div>;
   const title =
-    [...all].reverse().find((i) => (i.to === "/" ? pathname === "/" : pathname.startsWith(i.to)))
+    [...all].reverse().find((i) => (i.to === "/" ? (pathname === "/" || pathname === "/dashboard") : pathname.startsWith(i.to)))
       ?.label ?? "";
 
   return (
@@ -198,7 +202,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       >
         <Brand collapsed={collapsed} />
         <NavList collapsed={collapsed} />
-        <button
+        <Button variant="ghost"
           onClick={toggle}
           className="m-3 flex items-center justify-center gap-2 rounded-md py-2 text-xs text-sidebar-foreground/70 hover:bg-sidebar-accent"
         >
@@ -209,11 +213,11 @@ export function AppShell({ children }: { children: ReactNode }) {
               <PanelLeftClose className="size-4" /> Collapse
             </>
           )}
-        </button>
+        </Button>
       </aside>
 
       <Sheet open={mobile} onOpenChange={setMobile}>
-        <SheetContent side="left" className="w-72 border-0 bg-sidebar p-0 text-sidebar-foreground">
+        <SheetContent side="left" className="w-80 max-w-[90vw] border-0 bg-sidebar p-0 text-sidebar-foreground">
           <SheetTitle className="sr-only">Navigation</SheetTitle>
           <Brand />
           <NavList onNav={() => setMobile(false)} />
@@ -222,9 +226,9 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       <div className="flex min-w-0 flex-1 flex-col">
         <header className="sticky top-0 z-20 flex h-14 items-center gap-3 border-b bg-card/95 px-4 backdrop-blur">
-          <button className="lg:hidden" onClick={() => setMobile(true)} aria-label="Open menu">
+          <Button variant="ghost" className="lg:hidden" onClick={() => setMobile(true)} aria-label="Open menu">
             <Menu className="size-5" />
-          </button>
+          </Button>
           <div className="font-display text-base font-semibold">{title}</div>
           <div className="ml-auto flex items-center gap-2 text-xs sm:gap-3">
             <span
@@ -236,10 +240,10 @@ export function AppShell({ children }: { children: ReactNode }) {
               {online ? <Wifi className="size-3.5" /> : <WifiOff className="size-3.5" />}
               {online ? "Online" : "Offline"}
             </span>
-            <button
+            <Button variant="ghost"
               onClick={async () => {
                 setSyncing(true);
-                await syncNow().catch(() => {});
+                await syncNow().catch(e => toast.error(e instanceof Error ? e.message : "Sync failed"));
                 setSyncing(false);
               }}
               className="flex items-center gap-1.5 rounded-full bg-muted px-2.5 py-1 font-medium text-muted-foreground hover:text-foreground"
@@ -248,7 +252,7 @@ export function AppShell({ children }: { children: ReactNode }) {
               <RefreshCw className={cn("size-3.5", syncing && "animate-spin")} />
               <span className="num">{pending}</span>
               <span className="hidden sm:inline">Pending sync</span>
-            </button>
+            </Button>
             <Link
               to="/alerts"
               className="relative rounded-full p-1.5 hover:bg-muted"
@@ -271,7 +275,7 @@ export function AppShell({ children }: { children: ReactNode }) {
                   {user.role === "Owner" ? "Owner" : "Farm Manager"}
                 </div>
               </div>
-              <button
+              <Button variant="ghost"
                 onClick={async () => {
                   await logout();
                   void nav("/login");
@@ -280,19 +284,21 @@ export function AppShell({ children }: { children: ReactNode }) {
                 className="ml-1 rounded p-1 hover:bg-muted"
               >
                 <LogOut className="size-4" />
-              </button>
+              </Button>
             </div>
           </div>
         </header>
+        {syncError && <p role="alert" className="border-b bg-warning/10 px-4 py-2 text-xs text-warning">Your changes are kept on this device. Sync: {syncError}</p>}
         <main className="mx-auto w-full max-w-7xl flex-1 px-4 pb-24 pt-6 lg:px-8 lg:pb-10">
           {children}
         </main>
       </div>
 
-      <nav className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-5 border-t bg-card lg:hidden">
+      <nav className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-5 border-t bg-card pb-[env(safe-area-inset-bottom)] lg:hidden">
         {bottom.map((to) => {
-          const i = all.find((x) => x.to === to)!;
-          const active = to === "/" ? pathname === "/" : pathname.startsWith(to);
+          const i = all.find((x) => x.to === to);
+          if (!i) return null;
+          const active = to === "/" ? (pathname === "/" || pathname === "/dashboard") : pathname.startsWith(to);
           return (
             <Link
               key={to}
@@ -307,13 +313,13 @@ export function AppShell({ children }: { children: ReactNode }) {
             </Link>
           );
         })}
-        <button
+        <Button variant="ghost"
           onClick={() => setMobile(true)}
           className="flex flex-col items-center gap-1 py-2.5 text-[11px] text-muted-foreground"
         >
           <Menu className="size-5" />
           More
-        </button>
+        </Button>
       </nav>
     </div>
   );

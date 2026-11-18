@@ -3,10 +3,15 @@ import { ArrowRight, Bird, CalendarDays, Plus } from "lucide-react";
 import { Link } from "@/lib/router-compat";
 import { useData } from "@/lib/hooks";
 import { Button } from "@/components/ui/button";
+import { save, today, uid } from "@/lib/db";
+import { useUser } from "@/lib/hooks";
+import { syncNow } from "@/lib/sync";
+import { toast } from "sonner";
 import { Metric, ModuleHeader, Notice, Panel, PreviewFormDialog } from "@/features/kukuthrive/ui";
 
 export function FlocksList() {
-  const flocks = useData((db) => db.flocks.orderBy("dateReceived").reverse().toArray()) ?? [];
+  const {name} = useUser();
+  const flocks = useData((db) => db.flocks.toArray()) ?? [];
   const [filter, setFilter] = useState("Active");
   const visible = flocks.filter(
     (flock) =>
@@ -32,7 +37,14 @@ export function FlocksList() {
               </Button>
             }
             title="Register a broiler flock"
-            description="Preview placement and arrival information. No flock will be created in this iteration."
+            description="Record a new production cycle and its opening population."
+            submitLabel="Register flock"
+            onSave={async fields => {
+              const received=Number(fields.received); const placed=Number(fields.placed);
+              if(!Number.isInteger(received)||!Number.isInteger(placed)||placed<=0||received<placed)throw new Error("Enter whole bird counts; placed birds cannot exceed received birds.");
+              await save("flocks", {id:uid(),name:fields.name,type:"Broiler",breed:fields.breed,dateReceived:fields.placement||today(),initialCount:placed,liveCount:placed,supplier:fields.supplier||"",costPerChick:0,status:"Active",health:"Good",targetWeightKg:fields.target?Number(fields.target):undefined,notes:JSON.stringify(fields)},name);
+              toast.success("Flock registered"); await syncNow();
+            }}
             fields={[
               { name: "name", label: "Flock ID or name", required: true },
               { name: "house", label: "Farm and house", required: true },
@@ -84,14 +96,14 @@ export function FlocksList() {
 
       <div className="my-5 flex flex-wrap gap-2">
         {["Active", "Broilers", "Closed", "All"].map((item) => (
-          <button
+          <Button
             key={item}
             type="button"
             onClick={() => setFilter(item)}
             className={`rounded-full border px-4 py-2 text-sm font-medium ${filter === item ? "border-primary bg-primary text-primary-foreground" : "bg-card text-muted-foreground"}`}
           >
             {item}
-          </button>
+          </Button>
         ))}
       </div>
 

@@ -10,33 +10,600 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as AuthenticatedAlertsRouteImport } from './routes/_authenticated/alerts'
+import { Route as AuthenticatedAnalyticsRouteImport } from './routes/_authenticated/analytics'
+import { Route as AuthenticatedAssistantRouteImport } from './routes/_authenticated/assistant'
+import { Route as AuthenticatedBiosecurityRouteImport } from './routes/_authenticated/biosecurity'
+import { Route as AuthenticatedCashupRouteImport } from './routes/_authenticated/cashup'
+import { Route as AuthenticatedCustomersRouteImport } from './routes/_authenticated/customers'
+import { Route as AuthenticatedDailyRouteImport } from './routes/_authenticated/daily'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedDocumentsRouteImport } from './routes/_authenticated/documents'
+import { Route as AuthenticatedEnvironmentRouteImport } from './routes/_authenticated/environment'
+import { Route as AuthenticatedEquipmentRouteImport } from './routes/_authenticated/equipment'
+import { Route as AuthenticatedExpenseCategoriesRouteImport } from './routes/_authenticated/expense-categories'
+import { Route as AuthenticatedExpensesRouteImport } from './routes/_authenticated/expenses'
+import { Route as AuthenticatedFarmRouteImport } from './routes/_authenticated/farm'
+import { Route as AuthenticatedFeedRouteImport } from './routes/_authenticated/feed'
+import { Route as AuthenticatedFlocksRouteImport } from './routes/_authenticated/flocks'
+import { Route as AuthenticatedGrowthRouteImport } from './routes/_authenticated/growth'
+import { Route as AuthenticatedGuidesRouteImport } from './routes/_authenticated/guides'
+import { Route as AuthenticatedHealthRouteImport } from './routes/_authenticated/health'
+import { Route as AuthenticatedLitterRouteImport } from './routes/_authenticated/litter'
+import { Route as AuthenticatedMedicationRouteImport } from './routes/_authenticated/medication'
+import { Route as AuthenticatedNotificationsRouteImport } from './routes/_authenticated/notifications'
+import { Route as AuthenticatedPhotosRouteImport } from './routes/_authenticated/photos'
+import { Route as AuthenticatedPriceHistoryRouteImport } from './routes/_authenticated/price-history'
+import { Route as AuthenticatedReportsRouteImport } from './routes/_authenticated/reports'
+import { Route as AuthenticatedSalesRouteImport } from './routes/_authenticated/sales'
+import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
+import { Route as AuthenticatedStaffPaymentsRouteImport } from './routes/_authenticated/staff-payments'
+import { Route as AuthenticatedStandardsRouteImport } from './routes/_authenticated/standards'
+import { Route as AuthenticatedStockRouteImport } from './routes/_authenticated/stock'
+import { Route as AuthenticatedSuppliersRouteImport } from './routes/_authenticated/suppliers'
+import { Route as AuthenticatedVaccinationRouteImport } from './routes/_authenticated/vaccination'
+import { Route as AuthenticatedWaterRouteImport } from './routes/_authenticated/water'
+import { Route as AuthenticatedWelfareRouteImport } from './routes/_authenticated/welfare'
+import { Route as AuthenticatedCustomersIdRouteImport } from './routes/_authenticated/customers_.$id'
+import { Route as AuthenticatedDailyReportRouteImport } from './routes/_authenticated/daily_.report'
+import { Route as AuthenticatedExpensesNewRouteImport } from './routes/_authenticated/expenses_.new'
+import { Route as AuthenticatedFeedStockRouteImport } from './routes/_authenticated/feed_.stock'
+import { Route as AuthenticatedFlocksIdRouteImport } from './routes/_authenticated/flocks_.$id'
+import { Route as AuthenticatedHealthRecordsRouteImport } from './routes/_authenticated/health_.records'
+import { Route as AuthenticatedSalesNewRouteImport } from './routes/_authenticated/sales_.new'
+import { Route as AuthenticatedVaccinationRecordsRouteImport } from './routes/_authenticated/vaccination_.records'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAlertsRoute = AuthenticatedAlertsRouteImport.update({
+  id: '/alerts',
+  path: '/alerts',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAnalyticsRoute = AuthenticatedAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAssistantRoute = AuthenticatedAssistantRouteImport.update({
+  id: '/assistant',
+  path: '/assistant',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedBiosecurityRoute =
+  AuthenticatedBiosecurityRouteImport.update({
+    id: '/biosecurity',
+    path: '/biosecurity',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedCashupRoute = AuthenticatedCashupRouteImport.update({
+  id: '/cashup',
+  path: '/cashup',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedCustomersRoute = AuthenticatedCustomersRouteImport.update({
+  id: '/customers',
+  path: '/customers',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedDailyRoute = AuthenticatedDailyRouteImport.update({
+  id: '/daily',
+  path: '/daily',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedDocumentsRoute = AuthenticatedDocumentsRouteImport.update({
+  id: '/documents',
+  path: '/documents',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedEnvironmentRoute =
+  AuthenticatedEnvironmentRouteImport.update({
+    id: '/environment',
+    path: '/environment',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedEquipmentRoute = AuthenticatedEquipmentRouteImport.update({
+  id: '/equipment',
+  path: '/equipment',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedExpenseCategoriesRoute =
+  AuthenticatedExpenseCategoriesRouteImport.update({
+    id: '/expense-categories',
+    path: '/expense-categories',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedExpensesRoute = AuthenticatedExpensesRouteImport.update({
+  id: '/expenses',
+  path: '/expenses',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedFarmRoute = AuthenticatedFarmRouteImport.update({
+  id: '/farm',
+  path: '/farm',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedFeedRoute = AuthenticatedFeedRouteImport.update({
+  id: '/feed',
+  path: '/feed',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedFlocksRoute = AuthenticatedFlocksRouteImport.update({
+  id: '/flocks',
+  path: '/flocks',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedGrowthRoute = AuthenticatedGrowthRouteImport.update({
+  id: '/growth',
+  path: '/growth',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedGuidesRoute = AuthenticatedGuidesRouteImport.update({
+  id: '/guides',
+  path: '/guides',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedHealthRoute = AuthenticatedHealthRouteImport.update({
+  id: '/health',
+  path: '/health',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedLitterRoute = AuthenticatedLitterRouteImport.update({
+  id: '/litter',
+  path: '/litter',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedMedicationRoute = AuthenticatedMedicationRouteImport.update({
+  id: '/medication',
+  path: '/medication',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedNotificationsRoute =
+  AuthenticatedNotificationsRouteImport.update({
+    id: '/notifications',
+    path: '/notifications',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedPhotosRoute = AuthenticatedPhotosRouteImport.update({
+  id: '/photos',
+  path: '/photos',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedPriceHistoryRoute =
+  AuthenticatedPriceHistoryRouteImport.update({
+    id: '/price-history',
+    path: '/price-history',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedReportsRoute = AuthenticatedReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedSalesRoute = AuthenticatedSalesRouteImport.update({
+  id: '/sales',
+  path: '/sales',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedStaffPaymentsRoute =
+  AuthenticatedStaffPaymentsRouteImport.update({
+    id: '/staff-payments',
+    path: '/staff-payments',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedStandardsRoute = AuthenticatedStandardsRouteImport.update({
+  id: '/standards',
+  path: '/standards',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedStockRoute = AuthenticatedStockRouteImport.update({
+  id: '/stock',
+  path: '/stock',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedSuppliersRoute = AuthenticatedSuppliersRouteImport.update({
+  id: '/suppliers',
+  path: '/suppliers',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedVaccinationRoute =
+  AuthenticatedVaccinationRouteImport.update({
+    id: '/vaccination',
+    path: '/vaccination',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedWaterRoute = AuthenticatedWaterRouteImport.update({
+  id: '/water',
+  path: '/water',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedWelfareRoute = AuthenticatedWelfareRouteImport.update({
+  id: '/welfare',
+  path: '/welfare',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedCustomersIdRoute =
+  AuthenticatedCustomersIdRouteImport.update({
+    id: '/customers_/$id',
+    path: '/customers/$id',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDailyReportRoute =
+  AuthenticatedDailyReportRouteImport.update({
+    id: '/daily_/report',
+    path: '/daily/report',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedExpensesNewRoute =
+  AuthenticatedExpensesNewRouteImport.update({
+    id: '/expenses_/new',
+    path: '/expenses/new',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedFeedStockRoute = AuthenticatedFeedStockRouteImport.update({
+  id: '/feed_/stock',
+  path: '/feed/stock',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedFlocksIdRoute = AuthenticatedFlocksIdRouteImport.update({
+  id: '/flocks_/$id',
+  path: '/flocks/$id',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedHealthRecordsRoute =
+  AuthenticatedHealthRecordsRouteImport.update({
+    id: '/health_/records',
+    path: '/health/records',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSalesNewRoute = AuthenticatedSalesNewRouteImport.update({
+  id: '/sales_/new',
+  path: '/sales/new',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedVaccinationRecordsRoute =
+  AuthenticatedVaccinationRecordsRouteImport.update({
+    id: '/vaccination_/records',
+    path: '/vaccination/records',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/alerts': typeof AuthenticatedAlertsRoute
+  '/analytics': typeof AuthenticatedAnalyticsRoute
+  '/assistant': typeof AuthenticatedAssistantRoute
+  '/biosecurity': typeof AuthenticatedBiosecurityRoute
+  '/cashup': typeof AuthenticatedCashupRoute
+  '/customers': typeof AuthenticatedCustomersRoute
+  '/daily': typeof AuthenticatedDailyRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/documents': typeof AuthenticatedDocumentsRoute
+  '/environment': typeof AuthenticatedEnvironmentRoute
+  '/equipment': typeof AuthenticatedEquipmentRoute
+  '/expense-categories': typeof AuthenticatedExpenseCategoriesRoute
+  '/expenses': typeof AuthenticatedExpensesRoute
+  '/farm': typeof AuthenticatedFarmRoute
+  '/feed': typeof AuthenticatedFeedRoute
+  '/flocks': typeof AuthenticatedFlocksRoute
+  '/growth': typeof AuthenticatedGrowthRoute
+  '/guides': typeof AuthenticatedGuidesRoute
+  '/health': typeof AuthenticatedHealthRoute
+  '/litter': typeof AuthenticatedLitterRoute
+  '/medication': typeof AuthenticatedMedicationRoute
+  '/notifications': typeof AuthenticatedNotificationsRoute
+  '/photos': typeof AuthenticatedPhotosRoute
+  '/price-history': typeof AuthenticatedPriceHistoryRoute
+  '/reports': typeof AuthenticatedReportsRoute
+  '/sales': typeof AuthenticatedSalesRoute
+  '/settings': typeof AuthenticatedSettingsRoute
+  '/staff-payments': typeof AuthenticatedStaffPaymentsRoute
+  '/standards': typeof AuthenticatedStandardsRoute
+  '/stock': typeof AuthenticatedStockRoute
+  '/suppliers': typeof AuthenticatedSuppliersRoute
+  '/vaccination': typeof AuthenticatedVaccinationRoute
+  '/water': typeof AuthenticatedWaterRoute
+  '/welfare': typeof AuthenticatedWelfareRoute
+  '/customers/$id': typeof AuthenticatedCustomersIdRoute
+  '/daily/report': typeof AuthenticatedDailyReportRoute
+  '/expenses/new': typeof AuthenticatedExpensesNewRoute
+  '/feed/stock': typeof AuthenticatedFeedStockRoute
+  '/flocks/$id': typeof AuthenticatedFlocksIdRoute
+  '/health/records': typeof AuthenticatedHealthRecordsRoute
+  '/sales/new': typeof AuthenticatedSalesNewRoute
+  '/vaccination/records': typeof AuthenticatedVaccinationRecordsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/alerts': typeof AuthenticatedAlertsRoute
+  '/analytics': typeof AuthenticatedAnalyticsRoute
+  '/assistant': typeof AuthenticatedAssistantRoute
+  '/biosecurity': typeof AuthenticatedBiosecurityRoute
+  '/cashup': typeof AuthenticatedCashupRoute
+  '/customers': typeof AuthenticatedCustomersRoute
+  '/daily': typeof AuthenticatedDailyRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/documents': typeof AuthenticatedDocumentsRoute
+  '/environment': typeof AuthenticatedEnvironmentRoute
+  '/equipment': typeof AuthenticatedEquipmentRoute
+  '/expense-categories': typeof AuthenticatedExpenseCategoriesRoute
+  '/expenses': typeof AuthenticatedExpensesRoute
+  '/farm': typeof AuthenticatedFarmRoute
+  '/feed': typeof AuthenticatedFeedRoute
+  '/flocks': typeof AuthenticatedFlocksRoute
+  '/growth': typeof AuthenticatedGrowthRoute
+  '/guides': typeof AuthenticatedGuidesRoute
+  '/health': typeof AuthenticatedHealthRoute
+  '/litter': typeof AuthenticatedLitterRoute
+  '/medication': typeof AuthenticatedMedicationRoute
+  '/notifications': typeof AuthenticatedNotificationsRoute
+  '/photos': typeof AuthenticatedPhotosRoute
+  '/price-history': typeof AuthenticatedPriceHistoryRoute
+  '/reports': typeof AuthenticatedReportsRoute
+  '/sales': typeof AuthenticatedSalesRoute
+  '/settings': typeof AuthenticatedSettingsRoute
+  '/staff-payments': typeof AuthenticatedStaffPaymentsRoute
+  '/standards': typeof AuthenticatedStandardsRoute
+  '/stock': typeof AuthenticatedStockRoute
+  '/suppliers': typeof AuthenticatedSuppliersRoute
+  '/vaccination': typeof AuthenticatedVaccinationRoute
+  '/water': typeof AuthenticatedWaterRoute
+  '/welfare': typeof AuthenticatedWelfareRoute
+  '/customers/$id': typeof AuthenticatedCustomersIdRoute
+  '/daily/report': typeof AuthenticatedDailyReportRoute
+  '/expenses/new': typeof AuthenticatedExpensesNewRoute
+  '/feed/stock': typeof AuthenticatedFeedStockRoute
+  '/flocks/$id': typeof AuthenticatedFlocksIdRoute
+  '/health/records': typeof AuthenticatedHealthRecordsRoute
+  '/sales/new': typeof AuthenticatedSalesNewRoute
+  '/vaccination/records': typeof AuthenticatedVaccinationRecordsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/_authenticated/alerts': typeof AuthenticatedAlertsRoute
+  '/_authenticated/analytics': typeof AuthenticatedAnalyticsRoute
+  '/_authenticated/assistant': typeof AuthenticatedAssistantRoute
+  '/_authenticated/biosecurity': typeof AuthenticatedBiosecurityRoute
+  '/_authenticated/cashup': typeof AuthenticatedCashupRoute
+  '/_authenticated/customers': typeof AuthenticatedCustomersRoute
+  '/_authenticated/daily': typeof AuthenticatedDailyRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/documents': typeof AuthenticatedDocumentsRoute
+  '/_authenticated/environment': typeof AuthenticatedEnvironmentRoute
+  '/_authenticated/equipment': typeof AuthenticatedEquipmentRoute
+  '/_authenticated/expense-categories': typeof AuthenticatedExpenseCategoriesRoute
+  '/_authenticated/expenses': typeof AuthenticatedExpensesRoute
+  '/_authenticated/farm': typeof AuthenticatedFarmRoute
+  '/_authenticated/feed': typeof AuthenticatedFeedRoute
+  '/_authenticated/flocks': typeof AuthenticatedFlocksRoute
+  '/_authenticated/growth': typeof AuthenticatedGrowthRoute
+  '/_authenticated/guides': typeof AuthenticatedGuidesRoute
+  '/_authenticated/health': typeof AuthenticatedHealthRoute
+  '/_authenticated/litter': typeof AuthenticatedLitterRoute
+  '/_authenticated/medication': typeof AuthenticatedMedicationRoute
+  '/_authenticated/notifications': typeof AuthenticatedNotificationsRoute
+  '/_authenticated/photos': typeof AuthenticatedPhotosRoute
+  '/_authenticated/price-history': typeof AuthenticatedPriceHistoryRoute
+  '/_authenticated/reports': typeof AuthenticatedReportsRoute
+  '/_authenticated/sales': typeof AuthenticatedSalesRoute
+  '/_authenticated/settings': typeof AuthenticatedSettingsRoute
+  '/_authenticated/staff-payments': typeof AuthenticatedStaffPaymentsRoute
+  '/_authenticated/standards': typeof AuthenticatedStandardsRoute
+  '/_authenticated/stock': typeof AuthenticatedStockRoute
+  '/_authenticated/suppliers': typeof AuthenticatedSuppliersRoute
+  '/_authenticated/vaccination': typeof AuthenticatedVaccinationRoute
+  '/_authenticated/water': typeof AuthenticatedWaterRoute
+  '/_authenticated/welfare': typeof AuthenticatedWelfareRoute
+  '/_authenticated/customers_/$id': typeof AuthenticatedCustomersIdRoute
+  '/_authenticated/daily_/report': typeof AuthenticatedDailyReportRoute
+  '/_authenticated/expenses_/new': typeof AuthenticatedExpensesNewRoute
+  '/_authenticated/feed_/stock': typeof AuthenticatedFeedStockRoute
+  '/_authenticated/flocks_/$id': typeof AuthenticatedFlocksIdRoute
+  '/_authenticated/health_/records': typeof AuthenticatedHealthRecordsRoute
+  '/_authenticated/sales_/new': typeof AuthenticatedSalesNewRoute
+  '/_authenticated/vaccination_/records': typeof AuthenticatedVaccinationRecordsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/login'
+    | '/reset-password'
+    | '/alerts'
+    | '/analytics'
+    | '/assistant'
+    | '/biosecurity'
+    | '/cashup'
+    | '/customers'
+    | '/daily'
+    | '/dashboard'
+    | '/documents'
+    | '/environment'
+    | '/equipment'
+    | '/expense-categories'
+    | '/expenses'
+    | '/farm'
+    | '/feed'
+    | '/flocks'
+    | '/growth'
+    | '/guides'
+    | '/health'
+    | '/litter'
+    | '/medication'
+    | '/notifications'
+    | '/photos'
+    | '/price-history'
+    | '/reports'
+    | '/sales'
+    | '/settings'
+    | '/staff-payments'
+    | '/standards'
+    | '/stock'
+    | '/suppliers'
+    | '/vaccination'
+    | '/water'
+    | '/welfare'
+    | '/customers/$id'
+    | '/daily/report'
+    | '/expenses/new'
+    | '/feed/stock'
+    | '/flocks/$id'
+    | '/health/records'
+    | '/sales/new'
+    | '/vaccination/records'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/login'
+    | '/reset-password'
+    | '/alerts'
+    | '/analytics'
+    | '/assistant'
+    | '/biosecurity'
+    | '/cashup'
+    | '/customers'
+    | '/daily'
+    | '/dashboard'
+    | '/documents'
+    | '/environment'
+    | '/equipment'
+    | '/expense-categories'
+    | '/expenses'
+    | '/farm'
+    | '/feed'
+    | '/flocks'
+    | '/growth'
+    | '/guides'
+    | '/health'
+    | '/litter'
+    | '/medication'
+    | '/notifications'
+    | '/photos'
+    | '/price-history'
+    | '/reports'
+    | '/sales'
+    | '/settings'
+    | '/staff-payments'
+    | '/standards'
+    | '/stock'
+    | '/suppliers'
+    | '/vaccination'
+    | '/water'
+    | '/welfare'
+    | '/customers/$id'
+    | '/daily/report'
+    | '/expenses/new'
+    | '/feed/stock'
+    | '/flocks/$id'
+    | '/health/records'
+    | '/sales/new'
+    | '/vaccination/records'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/login'
+    | '/reset-password'
+    | '/_authenticated/alerts'
+    | '/_authenticated/analytics'
+    | '/_authenticated/assistant'
+    | '/_authenticated/biosecurity'
+    | '/_authenticated/cashup'
+    | '/_authenticated/customers'
+    | '/_authenticated/daily'
+    | '/_authenticated/dashboard'
+    | '/_authenticated/documents'
+    | '/_authenticated/environment'
+    | '/_authenticated/equipment'
+    | '/_authenticated/expense-categories'
+    | '/_authenticated/expenses'
+    | '/_authenticated/farm'
+    | '/_authenticated/feed'
+    | '/_authenticated/flocks'
+    | '/_authenticated/growth'
+    | '/_authenticated/guides'
+    | '/_authenticated/health'
+    | '/_authenticated/litter'
+    | '/_authenticated/medication'
+    | '/_authenticated/notifications'
+    | '/_authenticated/photos'
+    | '/_authenticated/price-history'
+    | '/_authenticated/reports'
+    | '/_authenticated/sales'
+    | '/_authenticated/settings'
+    | '/_authenticated/staff-payments'
+    | '/_authenticated/standards'
+    | '/_authenticated/stock'
+    | '/_authenticated/suppliers'
+    | '/_authenticated/vaccination'
+    | '/_authenticated/water'
+    | '/_authenticated/welfare'
+    | '/_authenticated/customers_/$id'
+    | '/_authenticated/daily_/report'
+    | '/_authenticated/expenses_/new'
+    | '/_authenticated/feed_/stock'
+    | '/_authenticated/flocks_/$id'
+    | '/_authenticated/health_/records'
+    | '/_authenticated/sales_/new'
+    | '/_authenticated/vaccination_/records'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  LoginRoute: typeof LoginRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +615,430 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/alerts': {
+      id: '/_authenticated/alerts'
+      path: '/alerts'
+      fullPath: '/alerts'
+      preLoaderRoute: typeof AuthenticatedAlertsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/analytics': {
+      id: '/_authenticated/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AuthenticatedAnalyticsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/assistant': {
+      id: '/_authenticated/assistant'
+      path: '/assistant'
+      fullPath: '/assistant'
+      preLoaderRoute: typeof AuthenticatedAssistantRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/biosecurity': {
+      id: '/_authenticated/biosecurity'
+      path: '/biosecurity'
+      fullPath: '/biosecurity'
+      preLoaderRoute: typeof AuthenticatedBiosecurityRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/cashup': {
+      id: '/_authenticated/cashup'
+      path: '/cashup'
+      fullPath: '/cashup'
+      preLoaderRoute: typeof AuthenticatedCashupRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/customers': {
+      id: '/_authenticated/customers'
+      path: '/customers'
+      fullPath: '/customers'
+      preLoaderRoute: typeof AuthenticatedCustomersRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/daily': {
+      id: '/_authenticated/daily'
+      path: '/daily'
+      fullPath: '/daily'
+      preLoaderRoute: typeof AuthenticatedDailyRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/documents': {
+      id: '/_authenticated/documents'
+      path: '/documents'
+      fullPath: '/documents'
+      preLoaderRoute: typeof AuthenticatedDocumentsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/environment': {
+      id: '/_authenticated/environment'
+      path: '/environment'
+      fullPath: '/environment'
+      preLoaderRoute: typeof AuthenticatedEnvironmentRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/equipment': {
+      id: '/_authenticated/equipment'
+      path: '/equipment'
+      fullPath: '/equipment'
+      preLoaderRoute: typeof AuthenticatedEquipmentRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/expense-categories': {
+      id: '/_authenticated/expense-categories'
+      path: '/expense-categories'
+      fullPath: '/expense-categories'
+      preLoaderRoute: typeof AuthenticatedExpenseCategoriesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/expenses': {
+      id: '/_authenticated/expenses'
+      path: '/expenses'
+      fullPath: '/expenses'
+      preLoaderRoute: typeof AuthenticatedExpensesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/farm': {
+      id: '/_authenticated/farm'
+      path: '/farm'
+      fullPath: '/farm'
+      preLoaderRoute: typeof AuthenticatedFarmRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/feed': {
+      id: '/_authenticated/feed'
+      path: '/feed'
+      fullPath: '/feed'
+      preLoaderRoute: typeof AuthenticatedFeedRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/flocks': {
+      id: '/_authenticated/flocks'
+      path: '/flocks'
+      fullPath: '/flocks'
+      preLoaderRoute: typeof AuthenticatedFlocksRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/growth': {
+      id: '/_authenticated/growth'
+      path: '/growth'
+      fullPath: '/growth'
+      preLoaderRoute: typeof AuthenticatedGrowthRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/guides': {
+      id: '/_authenticated/guides'
+      path: '/guides'
+      fullPath: '/guides'
+      preLoaderRoute: typeof AuthenticatedGuidesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/health': {
+      id: '/_authenticated/health'
+      path: '/health'
+      fullPath: '/health'
+      preLoaderRoute: typeof AuthenticatedHealthRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/litter': {
+      id: '/_authenticated/litter'
+      path: '/litter'
+      fullPath: '/litter'
+      preLoaderRoute: typeof AuthenticatedLitterRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/medication': {
+      id: '/_authenticated/medication'
+      path: '/medication'
+      fullPath: '/medication'
+      preLoaderRoute: typeof AuthenticatedMedicationRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/notifications': {
+      id: '/_authenticated/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof AuthenticatedNotificationsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/photos': {
+      id: '/_authenticated/photos'
+      path: '/photos'
+      fullPath: '/photos'
+      preLoaderRoute: typeof AuthenticatedPhotosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/price-history': {
+      id: '/_authenticated/price-history'
+      path: '/price-history'
+      fullPath: '/price-history'
+      preLoaderRoute: typeof AuthenticatedPriceHistoryRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/reports': {
+      id: '/_authenticated/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof AuthenticatedReportsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/sales': {
+      id: '/_authenticated/sales'
+      path: '/sales'
+      fullPath: '/sales'
+      preLoaderRoute: typeof AuthenticatedSalesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/settings': {
+      id: '/_authenticated/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AuthenticatedSettingsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/staff-payments': {
+      id: '/_authenticated/staff-payments'
+      path: '/staff-payments'
+      fullPath: '/staff-payments'
+      preLoaderRoute: typeof AuthenticatedStaffPaymentsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/standards': {
+      id: '/_authenticated/standards'
+      path: '/standards'
+      fullPath: '/standards'
+      preLoaderRoute: typeof AuthenticatedStandardsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/stock': {
+      id: '/_authenticated/stock'
+      path: '/stock'
+      fullPath: '/stock'
+      preLoaderRoute: typeof AuthenticatedStockRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/suppliers': {
+      id: '/_authenticated/suppliers'
+      path: '/suppliers'
+      fullPath: '/suppliers'
+      preLoaderRoute: typeof AuthenticatedSuppliersRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/vaccination': {
+      id: '/_authenticated/vaccination'
+      path: '/vaccination'
+      fullPath: '/vaccination'
+      preLoaderRoute: typeof AuthenticatedVaccinationRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/water': {
+      id: '/_authenticated/water'
+      path: '/water'
+      fullPath: '/water'
+      preLoaderRoute: typeof AuthenticatedWaterRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/welfare': {
+      id: '/_authenticated/welfare'
+      path: '/welfare'
+      fullPath: '/welfare'
+      preLoaderRoute: typeof AuthenticatedWelfareRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/customers_/$id': {
+      id: '/_authenticated/customers_/$id'
+      path: '/customers/$id'
+      fullPath: '/customers/$id'
+      preLoaderRoute: typeof AuthenticatedCustomersIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/daily_/report': {
+      id: '/_authenticated/daily_/report'
+      path: '/daily/report'
+      fullPath: '/daily/report'
+      preLoaderRoute: typeof AuthenticatedDailyReportRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/expenses_/new': {
+      id: '/_authenticated/expenses_/new'
+      path: '/expenses/new'
+      fullPath: '/expenses/new'
+      preLoaderRoute: typeof AuthenticatedExpensesNewRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/feed_/stock': {
+      id: '/_authenticated/feed_/stock'
+      path: '/feed/stock'
+      fullPath: '/feed/stock'
+      preLoaderRoute: typeof AuthenticatedFeedStockRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/flocks_/$id': {
+      id: '/_authenticated/flocks_/$id'
+      path: '/flocks/$id'
+      fullPath: '/flocks/$id'
+      preLoaderRoute: typeof AuthenticatedFlocksIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/health_/records': {
+      id: '/_authenticated/health_/records'
+      path: '/health/records'
+      fullPath: '/health/records'
+      preLoaderRoute: typeof AuthenticatedHealthRecordsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/sales_/new': {
+      id: '/_authenticated/sales_/new'
+      path: '/sales/new'
+      fullPath: '/sales/new'
+      preLoaderRoute: typeof AuthenticatedSalesNewRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/vaccination_/records': {
+      id: '/_authenticated/vaccination_/records'
+      path: '/vaccination/records'
+      fullPath: '/vaccination/records'
+      preLoaderRoute: typeof AuthenticatedVaccinationRecordsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAlertsRoute: typeof AuthenticatedAlertsRoute
+  AuthenticatedAnalyticsRoute: typeof AuthenticatedAnalyticsRoute
+  AuthenticatedAssistantRoute: typeof AuthenticatedAssistantRoute
+  AuthenticatedBiosecurityRoute: typeof AuthenticatedBiosecurityRoute
+  AuthenticatedCashupRoute: typeof AuthenticatedCashupRoute
+  AuthenticatedCustomersRoute: typeof AuthenticatedCustomersRoute
+  AuthenticatedDailyRoute: typeof AuthenticatedDailyRoute
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedDocumentsRoute: typeof AuthenticatedDocumentsRoute
+  AuthenticatedEnvironmentRoute: typeof AuthenticatedEnvironmentRoute
+  AuthenticatedEquipmentRoute: typeof AuthenticatedEquipmentRoute
+  AuthenticatedExpenseCategoriesRoute: typeof AuthenticatedExpenseCategoriesRoute
+  AuthenticatedExpensesRoute: typeof AuthenticatedExpensesRoute
+  AuthenticatedFarmRoute: typeof AuthenticatedFarmRoute
+  AuthenticatedFeedRoute: typeof AuthenticatedFeedRoute
+  AuthenticatedFlocksRoute: typeof AuthenticatedFlocksRoute
+  AuthenticatedGrowthRoute: typeof AuthenticatedGrowthRoute
+  AuthenticatedGuidesRoute: typeof AuthenticatedGuidesRoute
+  AuthenticatedHealthRoute: typeof AuthenticatedHealthRoute
+  AuthenticatedLitterRoute: typeof AuthenticatedLitterRoute
+  AuthenticatedMedicationRoute: typeof AuthenticatedMedicationRoute
+  AuthenticatedNotificationsRoute: typeof AuthenticatedNotificationsRoute
+  AuthenticatedPhotosRoute: typeof AuthenticatedPhotosRoute
+  AuthenticatedPriceHistoryRoute: typeof AuthenticatedPriceHistoryRoute
+  AuthenticatedReportsRoute: typeof AuthenticatedReportsRoute
+  AuthenticatedSalesRoute: typeof AuthenticatedSalesRoute
+  AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
+  AuthenticatedStaffPaymentsRoute: typeof AuthenticatedStaffPaymentsRoute
+  AuthenticatedStandardsRoute: typeof AuthenticatedStandardsRoute
+  AuthenticatedStockRoute: typeof AuthenticatedStockRoute
+  AuthenticatedSuppliersRoute: typeof AuthenticatedSuppliersRoute
+  AuthenticatedVaccinationRoute: typeof AuthenticatedVaccinationRoute
+  AuthenticatedWaterRoute: typeof AuthenticatedWaterRoute
+  AuthenticatedWelfareRoute: typeof AuthenticatedWelfareRoute
+  AuthenticatedCustomersIdRoute: typeof AuthenticatedCustomersIdRoute
+  AuthenticatedDailyReportRoute: typeof AuthenticatedDailyReportRoute
+  AuthenticatedExpensesNewRoute: typeof AuthenticatedExpensesNewRoute
+  AuthenticatedFeedStockRoute: typeof AuthenticatedFeedStockRoute
+  AuthenticatedFlocksIdRoute: typeof AuthenticatedFlocksIdRoute
+  AuthenticatedHealthRecordsRoute: typeof AuthenticatedHealthRecordsRoute
+  AuthenticatedSalesNewRoute: typeof AuthenticatedSalesNewRoute
+  AuthenticatedVaccinationRecordsRoute: typeof AuthenticatedVaccinationRecordsRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAlertsRoute: AuthenticatedAlertsRoute,
+  AuthenticatedAnalyticsRoute: AuthenticatedAnalyticsRoute,
+  AuthenticatedAssistantRoute: AuthenticatedAssistantRoute,
+  AuthenticatedBiosecurityRoute: AuthenticatedBiosecurityRoute,
+  AuthenticatedCashupRoute: AuthenticatedCashupRoute,
+  AuthenticatedCustomersRoute: AuthenticatedCustomersRoute,
+  AuthenticatedDailyRoute: AuthenticatedDailyRoute,
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedDocumentsRoute: AuthenticatedDocumentsRoute,
+  AuthenticatedEnvironmentRoute: AuthenticatedEnvironmentRoute,
+  AuthenticatedEquipmentRoute: AuthenticatedEquipmentRoute,
+  AuthenticatedExpenseCategoriesRoute: AuthenticatedExpenseCategoriesRoute,
+  AuthenticatedExpensesRoute: AuthenticatedExpensesRoute,
+  AuthenticatedFarmRoute: AuthenticatedFarmRoute,
+  AuthenticatedFeedRoute: AuthenticatedFeedRoute,
+  AuthenticatedFlocksRoute: AuthenticatedFlocksRoute,
+  AuthenticatedGrowthRoute: AuthenticatedGrowthRoute,
+  AuthenticatedGuidesRoute: AuthenticatedGuidesRoute,
+  AuthenticatedHealthRoute: AuthenticatedHealthRoute,
+  AuthenticatedLitterRoute: AuthenticatedLitterRoute,
+  AuthenticatedMedicationRoute: AuthenticatedMedicationRoute,
+  AuthenticatedNotificationsRoute: AuthenticatedNotificationsRoute,
+  AuthenticatedPhotosRoute: AuthenticatedPhotosRoute,
+  AuthenticatedPriceHistoryRoute: AuthenticatedPriceHistoryRoute,
+  AuthenticatedReportsRoute: AuthenticatedReportsRoute,
+  AuthenticatedSalesRoute: AuthenticatedSalesRoute,
+  AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
+  AuthenticatedStaffPaymentsRoute: AuthenticatedStaffPaymentsRoute,
+  AuthenticatedStandardsRoute: AuthenticatedStandardsRoute,
+  AuthenticatedStockRoute: AuthenticatedStockRoute,
+  AuthenticatedSuppliersRoute: AuthenticatedSuppliersRoute,
+  AuthenticatedVaccinationRoute: AuthenticatedVaccinationRoute,
+  AuthenticatedWaterRoute: AuthenticatedWaterRoute,
+  AuthenticatedWelfareRoute: AuthenticatedWelfareRoute,
+  AuthenticatedCustomersIdRoute: AuthenticatedCustomersIdRoute,
+  AuthenticatedDailyReportRoute: AuthenticatedDailyReportRoute,
+  AuthenticatedExpensesNewRoute: AuthenticatedExpensesNewRoute,
+  AuthenticatedFeedStockRoute: AuthenticatedFeedStockRoute,
+  AuthenticatedFlocksIdRoute: AuthenticatedFlocksIdRoute,
+  AuthenticatedHealthRecordsRoute: AuthenticatedHealthRecordsRoute,
+  AuthenticatedSalesNewRoute: AuthenticatedSalesNewRoute,
+  AuthenticatedVaccinationRecordsRoute: AuthenticatedVaccinationRecordsRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
+  LoginRoute: LoginRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
