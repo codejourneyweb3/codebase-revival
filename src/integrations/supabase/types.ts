@@ -14,13 +14,90 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      legacy_user_mapping: {
+        Row: {
+          auth_user_id: string
+          original_user_id: string
+          verified_email: string
+        }
+        Insert: {
+          auth_user_id: string
+          original_user_id: string
+          verified_email: string
+        }
+        Update: {
+          auth_user_id?: string
+          original_user_id?: string
+          verified_email?: string
+        }
+        Relationships: []
+      }
+      record_store: {
+        Row: {
+          data: Json
+          deleted_at: string | null
+          id: string
+          owner_id: string
+          server_updated_at: string
+          table_name: string
+          updated_at: string
+        }
+        Insert: {
+          data?: Json
+          deleted_at?: string | null
+          id: string
+          owner_id: string
+          server_updated_at?: string
+          table_name: string
+          updated_at?: string
+        }
+        Update: {
+          data?: Json
+          deleted_at?: string | null
+          id?: string
+          owner_id?: string
+          server_updated_at?: string
+          table_name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_preferences: {
+        Row: {
+          data: Json
+          user_id: string
+        }
+        Insert: {
+          data?: Json
+          user_id: string
+        }
+        Update: {
+          data?: Json
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          role: string
+          user_id: string
+        }
+        Insert: {
+          role: string
+          user_id: string
+        }
+        Update: {
+          role?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      kuku_role: { Args: never; Returns: string }
     }
     Enums: {
       [_ in never]: never
