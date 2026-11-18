@@ -191,6 +191,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   const title =
     [...all].reverse().find((i) => (i.to === "/" ? (pathname === "/" || pathname === "/dashboard") : pathname.startsWith(i.to)))
       ?.label ?? "";
+  const samplePages = ["/alerts", "/analytics", "/cashup", "/documents", "/feed/stock", "/health/records", "/medication", "/stock", "/vaccination/records", "/reports"];
 
   return (
     <div className="flex min-h-screen">
@@ -290,6 +291,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         </header>
         {syncError && <p role="alert" className="border-b bg-warning/10 px-4 py-2 text-xs text-warning">Your changes are kept on this device. Sync: {syncError}</p>}
         <main className="mx-auto w-full max-w-7xl flex-1 px-4 pb-24 pt-6 lg:px-8 lg:pb-10">
+          {samplePages.includes(pathname) && <p role="status" className="mb-4 border-l-2 border-warning bg-warning/10 px-4 py-3 text-sm text-foreground">Sample view from the original app. Figures and actions on this page are not connected to your farm records yet.</p>}
           {children}
         </main>
       </div>

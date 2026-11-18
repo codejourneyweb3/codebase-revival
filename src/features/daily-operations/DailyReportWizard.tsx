@@ -278,7 +278,7 @@ function StepIndicator({
       className={`flex h-14 min-w-0 flex-col items-center justify-center rounded-md text-xs font-medium ${tone}`}
     >
       {done ? <CheckCircle className="h-3.5 w-3.5" /> : <span>{idx + 1}</span>}
-      <span className="mt-0.5 max-w-full truncate px-1">{label}</span>
+      <span className="mt-0.5 max-w-full px-1 text-center text-[10px] leading-3 sm:text-xs">{label}</span>
     </div>
   );
 }
