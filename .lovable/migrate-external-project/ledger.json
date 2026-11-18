@@ -3,8 +3,8 @@
     "capability": "code",
     "source": "client/src",
     "outcome": "migrate",
-    "status": "verified",
-    "next_action": "42 screens load; original preview-only actions remain explicitly labeled"
+    "status": "partial",
+    "next_action": "42 screens render; customers, sales, expenses, flocks and daily reports use real records; sample-only alerts, analytics, cash-up, documents, feed stock, health records, medication, stock, vaccination records and reports are now explicitly identified"
   },
   {
     "capability": "schema",
@@ -88,13 +88,13 @@
     "source": "important routes and CRUD",
     "outcome": "verify",
     "status": "partial",
-    "next_action": "42 route render checks, flock create/reload, preferences persistence and mobile menu passed; imported-user flows and full CRUD/privacy isolation remain unverified"
+    "next_action": "84 desktop/phone route checks passed with zero page errors or horizontal overflow; customer create/detail, sales and expenses create/readback, all 8 daily-report steps and flock report readback passed; old-user and manager boundary verification pending"
   },
   {
     "capability": "unfinished source controls",
     "source": "showServerStub callsites",
     "outcome": "enhance",
     "status": "pending",
-    "next_action": "Welfare scoring and inspections, house setup, vaccination workflows, report packs, investigation assistant, push notifications and user management remain source previews"
+    "next_action": "Sample-only lists/actions and welfare scoring, house setup, inspections, vaccination workflows, report packs, assistant, push notifications and user management need domain implementation; these are unfinished code, not export blockers"
   }
 ]
