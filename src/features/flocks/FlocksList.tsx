@@ -40,9 +40,9 @@ export function FlocksList() {
             description="Record a new production cycle and its opening population."
             submitLabel="Register flock"
             onSave={async fields => {
-              const received=Number(fields.received); const placed=Number(fields.placed);
+              const received=Number(fields["received"]); const placed=Number(fields["placed"]);
               if(!Number.isInteger(received)||!Number.isInteger(placed)||placed<=0||received<placed)throw new Error("Enter whole bird counts; placed birds cannot exceed received birds.");
-              await save("flocks", {id:uid(),name:fields.name,type:"Broiler",breed:fields.breed,dateReceived:fields.placement||today(),initialCount:placed,liveCount:placed,supplier:fields.supplier||"",costPerChick:0,status:"Active",health:"Good",targetWeightKg:fields.target?Number(fields.target):undefined,notes:JSON.stringify(fields)},name);
+              await save("flocks", {id:uid(),name:fields["name"]??"",type:"Broiler",breed:fields["breed"]??"",dateReceived:fields["placement"]||today(),initialCount:placed,liveCount:placed,supplier:fields["supplier"]||"",costPerChick:0,status:"Active",health:"Good",targetWeightKg:fields["target"]?Number(fields["target"]):undefined,notes:JSON.stringify(fields)},name);
               toast.success("Flock registered"); await syncNow();
             }}
             fields={[

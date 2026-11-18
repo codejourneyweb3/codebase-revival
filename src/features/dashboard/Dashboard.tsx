@@ -134,6 +134,7 @@ export function Dashboard() {
           {WELFARE_DIMENSIONS.map((dimension, index) => {
             const Icon = dimensionIcons[index];
             const evidence = dimensionEvidence[dimension.id];
+            if(!Icon || !evidence) return null;
             return (
               <Link
                 key={dimension.id}

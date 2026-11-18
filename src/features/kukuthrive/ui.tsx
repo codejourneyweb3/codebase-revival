@@ -233,7 +233,7 @@ export function ScoreInput({
   label,
 }: {
   scaleId: string;
-  value?: number;
+  value?: number | undefined;
   onChange: (score: number | undefined) => void;
   label?: string;
 }) {
