@@ -7,6 +7,7 @@ import { save, today, uid } from "@/lib/db";
 import { useUser } from "@/lib/hooks";
 import { syncNow } from "@/lib/sync";
 import { toast } from "sonner";
+import { validPlacement } from "./registration";
 import { Metric, ModuleHeader, Notice, Panel, PreviewFormDialog } from "@/features/kukuthrive/ui";
 
 export function FlocksList() {
@@ -41,7 +42,7 @@ export function FlocksList() {
             submitLabel="Register flock"
             onSave={async fields => {
               const received=Number(fields["received"]); const placed=Number(fields["placed"]);
-              if(!Number.isInteger(received)||!Number.isInteger(placed)||placed<=0||received<placed)throw new Error("Enter whole bird counts; placed birds cannot exceed received birds.");
+              if(!validPlacement(received,placed))throw new Error("Enter whole bird counts; placed birds cannot exceed received birds.");
               await save("flocks", {id:uid(),name:fields["name"]??"",type:"Broiler",breed:fields["breed"]??"",dateReceived:fields["placement"]||today(),initialCount:placed,liveCount:placed,supplier:fields["supplier"]||"",costPerChick:0,status:"Active",health:"Good",targetWeightKg:fields["target"]?Number(fields["target"]):undefined,notes:JSON.stringify(fields)},name);
               toast.success("Flock registered"); await syncNow();
             }}
