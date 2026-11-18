@@ -1,3 +1,8 @@
+import { Button } from "@/components/ui/button";
+import { useData } from "@/lib/hooks";
+import { save,uid,type Product } from "@/lib/db";
+import { syncNow } from "@/lib/sync";
+import { Link } from "@/lib/router-compat";
 import { z } from "zod";
 import { useNavigate } from "@/lib/router-compat";
 import { useAuth } from "../auth/AuthProvider";
@@ -8,7 +13,7 @@ const schema = z.object({
   ref: z.string().min(1, "Reference is required"),
   date: z.string().min(1, "Date is required"),
   customerId: z.string().min(1, "Customer is required"),
-  item: z.enum(["eggs", "birds", "feed", "other"]),
+  item: z.enum(["eggs", "birds", "spent", "manure"]),
   quantity: z.number().min(1, "Quantity must be at least 1"),
   unit: z.string().min(1, "Unit is required"),
   unitPrice: z.number().min(1, "Unit price must be at least 1"),
@@ -19,6 +24,7 @@ const schema = z.object({
 type Form = z.infer<typeof schema>;
 
 export function SalesNew() {
+  const customers=useData(db=>db.customers.toArray())??[];
   const navigate = useNavigate();
   const { user } = useAuth();
   const form = useForm<Form>({
@@ -39,22 +45,24 @@ export function SalesNew() {
   const canManage = user?.role === "owner" || user?.role === "manager";
 
   const onSubmit = async (data: Form) => {
-    // Post to /api/v1/sales when the server is live.
-    // For now, navigate back so the list screen is reachable.
-    console.info("New sale payload:", data);
-    navigate("/sales");
+    try {
+      const products:Record<Form["item"],Product>={eggs:"Eggs (tray)",birds:"Live chicken",spent:"Spent hen",manure:"Manure (bag)"};
+      await save("sales", {id:uid(),ref:data.ref,date:data.date,customerId:data.customerId,product:products[data.item],quantity:data.quantity,unitPrice:data.unitPrice,paymentMethod:data.paymentMethod,notes:data.notes},user?.name??"");
+      await syncNow();await navigate("/sales");
+    }catch(e){form.setError("root",{message:e instanceof Error?e.message:"Could not save sale."});}
+
   };
 
   return (
     <div className="space-y-6">
-      <button
+      <Button
         type="button"
         onClick={() => navigate(-1)}
         className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
       >
         <ArrowLeft className="h-4 w-4" />
         Back
-      </button>
+      </Button>
 
       <div className="flex items-center justify-between">
         <div>
@@ -65,6 +73,7 @@ export function SalesNew() {
         </div>
       </div>
 
+      {!customers.length && <p className="text-sm text-muted-foreground">Add a customer before recording a sale. <Link to="/customers" className="text-primary underline">Open customers</Link></p>}
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
         <div className="grid gap-5 sm:grid-cols-2">
           <FormField label="Reference">
@@ -87,8 +96,7 @@ export function SalesNew() {
               className="w-full rounded-lg border border-input bg-background px-3 py-2 text-foreground focus:border-ring focus:outline-none"
             >
               <option value="">Select customer…</option>
-              <option value="c1">Nakato Store</option>
-              <option value="c2">Mukasa Eggs</option>
+              {customers.map(c=><option key={c.id} value={c.id}>{c.name}</option>)}
             </select>
           </FormField>
           <FormField label="Item">
@@ -98,8 +106,8 @@ export function SalesNew() {
             >
               <option value="eggs">Eggs</option>
               <option value="birds">Birds</option>
-              <option value="feed">Feed</option>
-              <option value="other">Other</option>
+              <option value="spent">Spent hen</option>
+              <option value="manure">Manure</option>
             </select>
           </FormField>
           <FormField label="Quantity">
@@ -156,14 +164,14 @@ export function SalesNew() {
           </span>
         </div>
 
-        <button
+        <Button
           type="submit"
-          disabled={!canManage}
+          disabled={!canManage || form.formState.isSubmitting}
           className="flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-secondary disabled:cursor-not-allowed disabled:opacity-50"
         >
           <Save className="h-4 w-4" />
           Save sale
-        </button>
+        </Button>
       </form>
     </div>
   );
@@ -171,9 +179,9 @@ export function SalesNew() {
 
 function FormField({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div>
-      <label className="mb-1.5 block text-sm font-medium text-foreground">{label}</label>
+    <label className="block">
+      <span className="mb-1.5 block text-sm font-medium text-foreground">{label}</span>
       {children}
-    </div>
+    </label>
   );
 }
