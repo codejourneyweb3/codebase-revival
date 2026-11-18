@@ -1,6 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { Link } from "@/lib/router-compat";
 import { useLiveQuery } from "dexie-react-hooks";
+import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, CheckCircle, Save } from "lucide-react";
 import { getDb, saveDailyReport, today, uid, type DailyReport, type Flock } from "../../lib/db";
 import { useAuth } from "../auth/AuthProvider";
@@ -162,7 +163,7 @@ export function DailyReportWizard() {
             >
               View flocks
             </Link>
-            <button
+            <Button
               type="button"
               className="rounded-lg bg-background px-4 py-2 font-medium text-foreground hover:bg-muted"
               onClick={() => {
@@ -172,7 +173,7 @@ export function DailyReportWizard() {
               }}
             >
               Start another report
-            </button>
+            </Button>
           </div>
         </div>
       </div>
@@ -181,7 +182,7 @@ export function DailyReportWizard() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="font-display text-2xl font-semibold text-foreground">
             Daily report
@@ -195,7 +196,7 @@ export function DailyReportWizard() {
         </span>
       </div>
 
-      <div className="flex gap-2">
+      <div className="grid grid-cols-4 gap-2 sm:grid-cols-8">
         {STEPS.map((s, i) => (
           <StepIndicator key={s.id} label={s.label} idx={i} active={i === step} done={i < step} />
         ))}
@@ -212,7 +213,7 @@ export function DailyReportWizard() {
       </div>
 
       <div className="flex items-center justify-between border-t border-border pt-4">
-        <button
+        <Button
           type="button"
           disabled={step === 0 || saving}
           className="inline-flex items-center gap-2 rounded-lg bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted disabled:cursor-not-allowed disabled:opacity-50"
@@ -220,26 +221,26 @@ export function DailyReportWizard() {
         >
           <ArrowLeft className="h-4 w-4" />
           Back
-        </button>
+        </Button>
         {step === STEPS.length - 1 ? (
-          <button
+          <Button
             type="button"
             disabled={saving}
-            className="inline-flex items-center gap-2 rounded-lg bg-success px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-success/90 disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex items-center gap-2 rounded-lg bg-success px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-success/90 disabled:cursor-not-allowed disabled:opacity-50"
             onClick={() => void finish()}
           >
             <Save className="h-4 w-4" />
             {saving ? "Saving…" : "Finish report"}
-          </button>
+          </Button>
         ) : (
-          <button
+          <Button
             type="button"
             className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-secondary"
             onClick={() => setStep((s) => Math.min(STEPS.length - 1, s + 1))}
           >
             Next
             <ArrowRight className="h-4 w-4" />
-          </button>
+          </Button>
         )}
       </div>
     </div>
@@ -270,14 +271,14 @@ function StepIndicator({
   const tone = active
     ? "bg-primary text-primary-foreground"
     : done
-      ? "bg-success text-white"
+      ? "bg-success text-primary-foreground"
       : "bg-muted text-muted-foreground";
   return (
     <div
-      className={`flex h-8 flex-1 flex-col items-center justify-center rounded-md text-xs font-medium ${tone}`}
+      className={`flex h-14 min-w-0 flex-col items-center justify-center rounded-md text-xs font-medium ${tone}`}
     >
       {done ? <CheckCircle className="h-3.5 w-3.5" /> : <span>{idx + 1}</span>}
-      <span className="mt-0.5 max-w-full truncate px-1">{label}</span>
+      <span className="mt-0.5 max-w-full px-1 text-center text-[10px] leading-3 sm:text-xs">{label}</span>
     </div>
   );
 }

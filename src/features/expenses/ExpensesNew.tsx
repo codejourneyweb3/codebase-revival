@@ -1,3 +1,6 @@
+import { Button } from "@/components/ui/button";
+import { save,uid,type ExpenseCategory } from "@/lib/db";
+import { syncNow } from "@/lib/sync";
 import { z } from "zod";
 import { useNavigate } from "@/lib/router-compat";
 import { useAuth } from "../auth/AuthProvider";
@@ -32,20 +35,19 @@ export function ExpensesNew() {
   });
 
   const onSubmit = async (data: Form) => {
-    console.info("New expense payload:", data);
-    navigate("/expenses");
+    try{const categories:Record<Form["category"],ExpenseCategory>={feed:"Feed",medicine:"Medication",utilities:"Utilities",labor:"Labour",other:"Other"};await save("expenses",{id:uid(),date:data.date,category:categories[data.category],description:data.ref,supplier:data.supplierId,amount:data.amount,paid:0,method:"Cash",notes:data.notes},user?.name??"");await syncNow();await navigate("/expenses");}catch(e){form.setError("root",{message:e instanceof Error?e.message:"Could not save expense."});}
   };
 
   return (
     <div className="space-y-6">
-      <button
+      <Button
         type="button"
         onClick={() => navigate(-1)}
         className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
       >
         <ArrowLeft className="h-4 w-4" />
         Back
-      </button>
+      </Button>
 
       <div className="flex items-center justify-between">
         <div>
@@ -75,14 +77,7 @@ export function ExpensesNew() {
             />
           </FormField>
           <FormField label="Supplier">
-            <select
-              {...form.register("supplierId")}
-              className="w-full rounded-lg border border-input bg-background px-3 py-2 text-foreground focus:border-ring focus:outline-none"
-            >
-              <option value="">Select supplier…</option>
-              <option value="s1">Kuku Feeds Ltd</option>
-              <option value="s2">VetCare Uganda</option>
-            </select>
+            <input {...form.register("supplierId")} className="w-full rounded-lg border border-input bg-background px-3 py-2" placeholder="Supplier name" />
           </FormField>
           <FormField label="Category">
             <select
@@ -116,14 +111,15 @@ export function ExpensesNew() {
           </FormField>
         </div>
 
-        <button
+        {form.formState.errors.root && <p role="alert" className="text-sm text-destructive">{form.formState.errors.root.message}</p>}
+        <Button
           type="submit"
-          disabled={!canManage}
+          disabled={!canManage || form.formState.isSubmitting}
           className="flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-secondary disabled:cursor-not-allowed disabled:opacity-50"
         >
           <Save className="h-4 w-4" />
           Save expense
-        </button>
+        </Button>
       </form>
     </div>
   );
@@ -131,9 +127,6 @@ export function ExpensesNew() {
 
 function FormField({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div>
-      <label className="mb-1.5 block text-sm font-medium text-foreground">{label}</label>
-      {children}
-    </div>
+    <label className="block"><span className="mb-1.5 block text-sm font-medium text-foreground">{label}</span>{children}</label>
   );
 }

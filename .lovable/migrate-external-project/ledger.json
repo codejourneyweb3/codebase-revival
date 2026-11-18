@@ -3,15 +3,15 @@
     "capability": "code",
     "source": "client/src",
     "outcome": "migrate",
-    "status": "in_progress",
-    "next_action": "Port screens and navigation"
+    "status": "partial",
+    "next_action": "42 screens render; customers, sales, expenses, flocks and daily reports use real records; sample-only alerts, analytics, cash-up, documents, feed stock, health records, medication, stock, vaccination records and reports are now explicitly identified"
   },
   {
     "capability": "schema",
     "source": "server/src/schema.sql",
     "outcome": "migrate",
-    "status": "in_progress",
-    "next_action": "Create Cloud records and preferences"
+    "status": "verified",
+    "next_action": "Cloud tables applied and flock write verified"
   },
   {
     "capability": "records",
@@ -25,14 +25,14 @@
     "source": "server/src/auth.ts",
     "outcome": "migrate",
     "status": "pending",
-    "next_action": "Request user exports without credentials"
+    "next_action": "Upload original user IDs and verified email/profile/role exports; first-login migration cannot be verified without them"
   },
   {
     "capability": "authorization",
     "source": "client/src/lib/permissions.ts",
     "outcome": "migrate",
-    "status": "in_progress",
-    "next_action": "Enforce roles server-side"
+    "status": "partial",
+    "next_action": "Ownership RLS and protected role reads implemented; manager/second-user boundary checks pending"
   },
   {
     "capability": "uploaded file bytes",
@@ -52,8 +52,8 @@
     "capability": "public endpoints",
     "source": "/api/health and /api/sync",
     "outcome": "preserve",
-    "status": "in_progress",
-    "next_action": "Adapt first-party synchronization to Cloud"
+    "status": "partial",
+    "next_action": "First-party sync moved to Cloud; external callers of old /api/auth and /api/sync require cutover verification"
   },
   {
     "capability": "callbacks and webhooks",
@@ -87,14 +87,14 @@
     "capability": "verification",
     "source": "important routes and CRUD",
     "outcome": "verify",
-    "status": "in_progress",
-    "next_action": "Exercise signed-in flow"
+    "status": "partial",
+    "next_action": "84 desktop/phone route checks passed with zero page errors or horizontal overflow; customer create/detail, sales and expenses create/readback, all 8 daily-report steps and flock report readback passed; old-user and manager boundary verification pending"
   },
   {
     "capability": "unfinished source controls",
     "source": "showServerStub callsites",
     "outcome": "enhance",
     "status": "pending",
-    "next_action": "Inventory and disclose unsupported source features"
+    "next_action": "Sample-only lists/actions and welfare scoring, house setup, inspections, vaccination workflows, report packs, assistant, push notifications and user management need domain implementation; these are unfinished code, not export blockers"
   }
 ]

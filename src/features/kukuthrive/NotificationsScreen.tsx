@@ -51,15 +51,15 @@ const DEFAULT_PREFS: Prefs = {
 function normalizePrefs(raw: unknown): Prefs {
   const value = raw && typeof raw === "object" ? (raw as Record<string, unknown>) : {};
   const cats =
-    value.categories && typeof value.categories === "object"
-      ? (value.categories as Record<string, unknown>)
+    value["categories"] && typeof value["categories"] === "object"
+      ? (value["categories"] as Record<string, unknown>)
       : {};
   return {
     categories: Object.fromEntries(
       CATEGORIES.map((c) => [c.id, typeof cats[c.id] === "boolean" ? (cats[c.id] as boolean) : true]),
     ) as Record<CategoryId, boolean>,
-    quietFrom: typeof value.quietFrom === "string" ? value.quietFrom : DEFAULT_PREFS.quietFrom,
-    quietTo: typeof value.quietTo === "string" ? value.quietTo : DEFAULT_PREFS.quietTo,
+    quietFrom: typeof value["quietFrom"] === "string" ? value["quietFrom"] : DEFAULT_PREFS.quietFrom,
+    quietTo: typeof value["quietTo"] === "string" ? value["quietTo"] : DEFAULT_PREFS.quietTo,
   };
 }
 

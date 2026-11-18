@@ -34,3 +34,4 @@ use the editor.
 - Keep Dexie as an account-scoped offline cache and queue; Cloud record_store is authoritative so reconnects persist existing workflows.
 - Read account roles from the protected user_roles table and enforce private ownership with RLS; client permissions only control presentation.
 - Keep incomplete source welfare and assistant actions explicitly labeled as previews until their domain workflows are implemented.
+- Use account-scoped real records for customer, sale, expense, and daily-report flows; identify remaining imported sample views explicitly so sample totals cannot be mistaken for farm data.

@@ -13,8 +13,8 @@ export interface Flock {
   costPerChick: number;
   status: "Active" | "Closed";
   health: "Good" | "Watch" | "Concern";
-  notes?: string;
-  targetWeightKg?: number;
+  notes?: string | undefined;
+  targetWeightKg?: number | undefined;
 }
 export interface DailyReport {
   id: string;
@@ -22,31 +22,31 @@ export interface DailyReport {
   date: string;
   manager: string;
   status: "Draft" | "Submitted";
-  condition?: string;
-  sickBirds?: number;
-  observations?: string;
-  deaths?: number;
-  deathCause?: string;
-  disposal?: string;
-  feedType?: string;
-  feedGivenKg?: number;
-  feedRemainingKg?: number;
-  waterL?: number;
-  temperatureC?: number;
-  ventilation?: string;
-  litter?: string;
-  eggs?: number;
-  broken?: number;
-  cracked?: number;
-  gradeSmall?: number;
-  gradeMedium?: number;
-  gradeLarge?: number;
-  gradeXl?: number;
-  avgWeightKg?: number;
-  uniformity?: number;
-  sampled?: number;
-  notes?: string;
-  step?: number;
+  condition?: string | undefined;
+  sickBirds?: number | undefined;
+  observations?: string | undefined;
+  deaths?: number | undefined;
+  deathCause?: string | undefined;
+  disposal?: string | undefined;
+  feedType?: string | undefined;
+  feedGivenKg?: number | undefined;
+  feedRemainingKg?: number | undefined;
+  waterL?: number | undefined;
+  temperatureC?: number | undefined;
+  ventilation?: string | undefined;
+  litter?: string | undefined;
+  eggs?: number | undefined;
+  broken?: number | undefined;
+  cracked?: number | undefined;
+  gradeSmall?: number | undefined;
+  gradeMedium?: number | undefined;
+  gradeLarge?: number | undefined;
+  gradeXl?: number | undefined;
+  avgWeightKg?: number | undefined;
+  uniformity?: number | undefined;
+  sampled?: number | undefined;
+  notes?: string | undefined;
+  step?: number | undefined;
 }
 export interface Customer {
   id: string;
@@ -60,13 +60,13 @@ export interface Sale {
   ref: string;
   date: string;
   customerId: string;
-  flockId?: string;
+  flockId?: string | undefined;
   product: Product;
   quantity: number;
   unitPrice: number;
   paymentMethod: string;
-  notes?: string;
-  reversalOf?: string;
+  notes?: string | undefined;
+  reversalOf?: string | undefined;
 }
 export interface Payment {
   id: string;
@@ -82,12 +82,12 @@ export interface Expense {
   date: string;
   category: ExpenseCategory;
   description: string;
-  flockId?: string;
-  supplier?: string;
+  flockId?: string | undefined;
+  supplier?: string | undefined;
   amount: number;
   paid: number;
   method: string;
-  notes?: string;
+  notes?: string | undefined;
 }
 export interface FeedStock {
   id: string;
@@ -103,7 +103,7 @@ export interface FeedDelivery {
   feedType: string;
   quantityKg: number;
   cost: number;
-  notes?: string;
+  notes?: string | undefined;
 }
 export interface Medication {
   id: string;
@@ -129,13 +129,13 @@ export interface Treatment {
   dosage: string;
   by: string;
   withdrawalDays: number;
-  response?: string;
+  response?: string | undefined;
 }
 export interface Visit {
   id: string;
   date: string;
   visitor: string;
-  vehicle?: string;
+  vehicle?: string | undefined;
   purpose: string;
   disinfected: boolean;
   recordedBy: string;
@@ -144,7 +144,7 @@ export interface Alert {
   id: string;
   type: string;
   description: string;
-  related?: string;
+  related?: string | undefined;
   date: string;
   severity: "Low" | "Medium" | "High";
   read: boolean;
@@ -156,8 +156,8 @@ export interface Doc {
   type: string;
   issue: string;
   expiry: string;
-  fileName?: string;
-  dataUrl?: string;
+  fileName?: string | undefined;
+  dataUrl?: string | undefined;
 }
 export interface Equipment {
   id: string;
@@ -175,14 +175,14 @@ export interface CashUp {
   counted: number;
 }
 export interface Audit {
-  id?: number;
+  id?: number | undefined;
   at: string;
   user: string;
   action: string;
   entity: string;
 }
 export interface Outbox {
-  id?: number;
+  id?: number | undefined;
   at: string;
   table: string;
   op: string;
@@ -211,7 +211,7 @@ export interface MortalityRecord {
   count: number;
   suspectedCause: string;
   disposal: string;
-  notes?: string;
+  notes?: string | undefined;
 }
 export interface FeedUsage {
   id: string;
@@ -235,7 +235,7 @@ export interface WeightSample {
 /** Tables the server already syncs but the client had no local store for. */
 export interface Photo {
   id: string;
-  flockId?: string;
+  flockId?: string | undefined;
   date: string;
   caption: string;
   dataUrl: string;
@@ -265,7 +265,7 @@ export interface PriceChange {
   product: string;
   date: string;
   unitPrice: number;
-  note?: string;
+  note?: string | undefined;
 }
 export interface StaffPayment {
   id: string;
