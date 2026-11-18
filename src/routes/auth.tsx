@@ -1,0 +1,2 @@
+import {createFileRoute} from "@tanstack/react-router";import {LoginPage} from "@/features/auth/LoginPage";
+export const Route=createFileRoute("/auth")({head:()=>({meta:[{title:"Sign in · KukuThrive"},{name:"description",content:"Sign in or create your KukuThrive farm account."},{property:"og:title",content:"Sign in · KukuThrive"},{property:"og:description",content:"Sign in or create your KukuThrive farm account."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}),component:LoginPage});
