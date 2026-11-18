@@ -1,0 +1,100 @@
+[
+  {
+    "capability": "code",
+    "source": "client/src",
+    "outcome": "migrate",
+    "status": "in_progress",
+    "next_action": "Port screens and navigation"
+  },
+  {
+    "capability": "schema",
+    "source": "server/src/schema.sql",
+    "outcome": "migrate",
+    "status": "in_progress",
+    "next_action": "Create Cloud records and preferences"
+  },
+  {
+    "capability": "records",
+    "source": "backups/kukuthrive-20261117-233028.dump",
+    "outcome": "migrate",
+    "status": "pending",
+    "next_action": "Request per-table CSV or JSON; binary dump cannot be safely filtered"
+  },
+  {
+    "capability": "auth identities",
+    "source": "server/src/auth.ts",
+    "outcome": "migrate",
+    "status": "pending",
+    "next_action": "Request user exports without credentials"
+  },
+  {
+    "capability": "authorization",
+    "source": "client/src/lib/permissions.ts",
+    "outcome": "migrate",
+    "status": "in_progress",
+    "next_action": "Enforce roles server-side"
+  },
+  {
+    "capability": "uploaded file bytes",
+    "source": "photos and documents data URLs",
+    "outcome": "migrate",
+    "status": "pending",
+    "next_action": "Import filtered record exports"
+  },
+  {
+    "capability": "external providers",
+    "source": "source inspection",
+    "outcome": "preserve",
+    "status": "not_detected",
+    "next_action": "No active third-party calls detected"
+  },
+  {
+    "capability": "public endpoints",
+    "source": "/api/health and /api/sync",
+    "outcome": "preserve",
+    "status": "in_progress",
+    "next_action": "Adapt first-party synchronization to Cloud"
+  },
+  {
+    "capability": "callbacks and webhooks",
+    "source": "source inspection",
+    "outcome": "preserve",
+    "status": "not_detected",
+    "next_action": "No active external callbacks detected"
+  },
+  {
+    "capability": "schedules",
+    "source": "source inspection",
+    "outcome": "preserve",
+    "status": "not_detected",
+    "next_action": "No deployed schedule detected"
+  },
+  {
+    "capability": "secrets",
+    "source": "source runtime variables",
+    "outcome": "replace",
+    "status": "in_progress",
+    "next_action": "Cloud replaces local database and session credentials"
+  },
+  {
+    "capability": "cutover",
+    "source": "existing deployment",
+    "outcome": "pending",
+    "status": "pending",
+    "next_action": "Verify deployment URLs before replacing existing site"
+  },
+  {
+    "capability": "verification",
+    "source": "important routes and CRUD",
+    "outcome": "verify",
+    "status": "in_progress",
+    "next_action": "Exercise signed-in flow"
+  },
+  {
+    "capability": "unfinished source controls",
+    "source": "showServerStub callsites",
+    "outcome": "enhance",
+    "status": "pending",
+    "next_action": "Inventory and disclose unsupported source features"
+  }
+]

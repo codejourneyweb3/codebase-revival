@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Application architecture
+- Preserve imported feature screens behind TanStack file routes; the compatibility adapter uses TanStack only to avoid a second router.
+- Keep Dexie as an account-scoped offline cache and queue; Cloud record_store is authoritative so reconnects persist existing workflows.
+- Read account roles from the protected user_roles table and enforce private ownership with RLS; client permissions only control presentation.
+- Keep incomplete source welfare and assistant actions explicitly labeled as previews until their domain workflows are implemented.
