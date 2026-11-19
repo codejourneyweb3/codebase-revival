@@ -4,5 +4,11 @@
 - [x] Improve phone navigation and make flock registration work.
 - [x] Verify all 42 pages on desktop/phone, all 8 report steps, flock/customer details, and real sale/expense/report persistence.
 - [ ] Existing records and user import: waiting for CSV/JSON exports; bundled binary dump is not imported.
-- [ ] Finish source sample-only lists and actions plus welfare/house/inspection/assistant/report-pack/push/user-management workflows; not yet implemented.
+- [ ] Complete welfare assessments, evidence-linked alerts and intervention reassessments.
+- [ ] Complete farm/house setup, flock assignment and house history.
+- [ ] Connect scoped farm assistant and save answers.
+- [ ] Generate account-scoped report packs with PDF/CSV downloads.
+- [ ] Register push devices, deliver notifications and retain delivery outcomes.
+- [ ] Implement secure team invitations, manager access, removal and audit history.
+- [ ] Remaining source sample-only lists and unrelated inspection actions remain outside this request.
 - [ ] Existing deployment and external caller cutover: waiting for deployment details.
