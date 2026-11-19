@@ -3,6 +3,7 @@ import Dexie, { type Table } from "dexie";
 export type FlockType = "Layer" | "Broiler";
 export interface Flock {
   id: string;
+  houseId?: string;
   name: string;
   type: FlockType;
   breed: string;

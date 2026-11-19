@@ -14,6 +14,78 @@ export type Database = {
   }
   public: {
     Tables: {
+      farm_audit: {
+        Row: {
+          action: string
+          actor_id: string
+          created_at: string
+          details: string
+          id: string
+          owner_id: string
+        }
+        Insert: {
+          action: string
+          actor_id: string
+          created_at?: string
+          details?: string
+          id?: string
+          owner_id: string
+        }
+        Update: {
+          action?: string
+          actor_id?: string
+          created_at?: string
+          details?: string
+          id?: string
+          owner_id?: string
+        }
+        Relationships: []
+      }
+      farm_invites: {
+        Row: {
+          created_at: string
+          email: string
+          expires_at: string
+          id: string
+          owner_id: string
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          expires_at?: string
+          id?: string
+          owner_id: string
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          expires_at?: string
+          id?: string
+          owner_id?: string
+          status?: string
+        }
+        Relationships: []
+      }
+      farm_members: {
+        Row: {
+          owner_id: string
+          role: string
+          user_id: string
+        }
+        Insert: {
+          owner_id: string
+          role?: string
+          user_id: string
+        }
+        Update: {
+          owner_id?: string
+          role?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       legacy_user_mapping: {
         Row: {
           auth_user_id: string
@@ -29,6 +101,24 @@ export type Database = {
           auth_user_id?: string
           original_user_id?: string
           verified_email?: string
+        }
+        Relationships: []
+      }
+      push_devices: {
+        Row: {
+          created_at: string
+          token: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          token: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          token?: string
+          user_id?: string
         }
         Relationships: []
       }
@@ -97,6 +187,33 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      farm_accept_invite: { Args: { _id: string }; Returns: undefined }
+      farm_access: {
+        Args: { _data?: Json; _owner: string; _table: string }
+        Returns: boolean
+      }
+      farm_invite_manager: { Args: { _email: string }; Returns: string }
+      farm_pending_invites: {
+        Args: never
+        Returns: {
+          created_at: string
+          email: string
+          expires_at: string
+          id: string
+          owner_id: string
+          status: string
+        }[]
+        SetofOptions: {
+          from: "*"
+          to: "farm_invites"
+          isOneToOne: false
+          isSetofReturn: true
+        }
+      }
+      farm_revoke: {
+        Args: { _id: string; _invite: boolean }
+        Returns: undefined
+      }
       kuku_role: { Args: never; Returns: string }
     }
     Enums: {
